@@ -17,7 +17,7 @@ class No {
 		No* getProximo();
 
 		void setDado(T d);
-		void setProximo(No*<T> p);
+		void setProximo(No<T>* p);
 };
 
 template<class T>

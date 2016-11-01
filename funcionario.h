@@ -36,10 +36,14 @@ class Funcionario {
 		void setFatorRH(char f);
 		void setEspecialidade(string e);
 
+		friend std::ostream& operator<< (std::ostream &o, Funcionario const f);
+
 };
 
-class Veterinario : protected Funcionario {};
+ostream& operator<< (std::ostream &o, Funcionario const f);
 
-class Tratador : protected Funcionario {};
+class Veterinario : public Funcionario {};
+
+class Tratador : public Funcionario {};
 
 #endif

@@ -2,7 +2,7 @@
 #include "lista.h"
 
 int main (){
-	Veterinario v;
+	Veterinario* v = new Veterinario;
 	int i;
 	string n, c, e;
 	short ida, ts;
@@ -10,27 +10,33 @@ int main (){
 
 	cout << "Digite a ID do funcionario: ";
 	cin >> i;
-	v.setId(i);
+	v->setId(i);
 	cout << "Digite o nome do funcionario: ";
-	cin >> n;
-	v.setNome(n);
+	cin.ignore();
+	getline(cin, n);
+	v->setNome(n);
 	cout << "Digite o CPF do funcionario: ";
-	cin >> c;
-	v.setCpf(c);
+	cin.ignore();
+	getline(cin, c);
+	v->setCpf(c);
 	cout << "Digite a idade do funcionario: ";
+	cin.ignore();
 	cin >> ida;
-	v.setIdade(ida);
+	v->setIdade(ida);
+	/*
 	cout << "Digite o tipo sanguineo do funcionario: ";
+	cin.ignore();
 	cin >> ts;
-	v.setTipo_sanguineo(ts);
+	v->setTipo_sanguineo(ts);
 	cout << "Digite o fator RH do funcionario: ";
 	cin >> f;
-	v.setFatorRH(f);
+	v->setFatorRH(f);
 	cout << "Digite a especialidade do funcionario: ";
-	cin >> e;
-	v.setEspecialidade(e);
+	cin.ignore();
+	getline(cin, e);
+	v->setEspecialidade(e);*/
 
-	Lista<> func; //resolver problema com o tipo
+	Lista<Veterinario*> func;
 
 	func.inserirInicio(v);
 

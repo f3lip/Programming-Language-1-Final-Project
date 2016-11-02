@@ -40,7 +40,7 @@ class Animal {
 		void setBatismo(string b);
 };
 
-class Anfibio : protected Animal {
+class Anfibio : public Animal {
 	protected:
 		int total_mudas;
 		string ultima_muda;
@@ -57,7 +57,7 @@ class Anfibio : protected Animal {
 		void setUltimo_muda(string u);
 };
 
-class Mamiforo : protected Animal {
+class Mamiforo : public Animal {
 	protected:
 		string cor_pelo;
 
@@ -71,7 +71,7 @@ class Mamiforo : protected Animal {
 		void setCor_pelo(string cor);
 };
 
-class Reptil : protected Animal {
+class Reptil : public Animal {
 	protected:
 		bool venenoso;
 		string tipo_veneno;
@@ -88,7 +88,7 @@ class Reptil : protected Animal {
 		void setTipo_veneno(string tipo);
 };
 
-class Ave : protected Animal {
+class Ave : public Animal {
 	protected:
 		int tamanho_bico;
 		int envergadura;
@@ -119,7 +119,7 @@ class AnimalSilvestre {
 		void setIbama(string ib);
 };
 
-class Nativo : protected AnimalSilvestre {
+class Nativo : public AnimalSilvestre {
 	protected:
 		string uf_origem;
 		string autorizacao;
@@ -136,7 +136,7 @@ class Nativo : protected AnimalSilvestre {
 		void setAutorizacao(string aut);
 };
 
-class Exotico : protected AnimalSilvestre {
+class Exotico : public AnimalSilvestre {
 	protected:
 		string pais_origem;
 
@@ -150,8 +150,8 @@ class Exotico : protected AnimalSilvestre {
 		void setPais_origem(string pais);
 };
 
-class AveNativa : protected Ave, Nativo {};
+class AveNativa : public Ave, Nativo {};
 
-class AveExotica : protected Ave, Exotico {};
+class AveExotica : public Ave, Exotico {};
 
 #endif

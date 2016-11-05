@@ -17,6 +17,7 @@ Animal::Animal(int i, string c, string n, string cien, char s, float t, string d
 int Animal::getId(){
 	return id;
 }
+
 string Animal::getClasse(){
 	return classe;
 }
@@ -47,10 +48,6 @@ string Animal::getBatismo(){
 
 void Animal::setId(int i){
 	id = i;
-}
-
-void Animal::setClasse(string c){
-	classe = c;
 }
 
 void Animal::setNome(string n){
@@ -101,18 +98,18 @@ void Anfibio::setUltimo_muda(string u){
 	ultimo_muda = u;
 }
 
-Mamiforo::Mamiforo(){
+Mamifero::Mamifero(){
 	cor_pelo = "";
 }
 
-Mamiforo::Mamiforo(string cor)
+Mamifero::Mamifero(string cor)
 	: cor_pelo(cor) {}
 
-string Mamiforo::getCor_pelo(){
+string Mamifero::getCor_pelo(){
 	return cor_pelo;
 }
 
-void Mamiforo::setCor_pelo(string cor){
+void Mamifero::setCor_pelo(string cor){
 	cor_pelo = cor;
 }
 

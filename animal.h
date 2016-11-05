@@ -1,7 +1,17 @@
+/**
+ * @file	animal.h
+ * @brief	Definicao de prototipos de classes referentes aos animais
+ * @author	Bruno Felipe
+ * @since	02/11/2016
+ * @date	02/11/2016
+ */
+
 #ifndef ANIMAL_H
 #define ANIMAL_H
 
 #include "funcionario.h"
+
+
 
 class Animal {
 	protected:
@@ -31,10 +41,9 @@ class Animal {
 		string getBatismo();
 
 		void setId(int i);
-		void setClasse(string c);
 		void setNome(string n);
 		void setCientifico(string cien);
-		void setSexo(char s);
+		static void setSexo(char s) = 0;
 		void setTamanho(float t);
 		void setDieta(string d);
 		void setBatismo(string b);
@@ -57,19 +66,23 @@ class Anfibio : public Animal {
 		void setUltimo_muda(string u);
 };
 
-class Mamiforo : public Animal {
+class Sapo : public Anfibio {};
+
+class Mamifero : public Animal {
 	protected:
 		string cor_pelo;
 
 	public:
-		Mamiforo();
-		Mamiforo(string cor);
-		~Mamiforo();
+		Mamifero();
+		Mamifero(string cor);
+		~Mamifero();
 
 		string getCor_pelo();
 
 		void setCor_pelo(string cor);
 };
+
+class Leao : public Mamifero {};
 
 class Reptil : public Animal {
 	protected:
@@ -87,6 +100,8 @@ class Reptil : public Animal {
 		void setVenenoso(bool v);
 		void setTipo_veneno(string tipo);
 };
+
+class Tartaruga : public Reptil {};
 
 class Ave : public Animal {
 	protected:
@@ -152,6 +167,10 @@ class Exotico : public AnimalSilvestre {
 
 class AveNativa : public Ave, Nativo {};
 
+class AraraAzul : public AveNativa {};
+
 class AveExotica : public Ave, Exotico {};
+
+class Pavao : public AveExotica {};
 
 #endif

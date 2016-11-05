@@ -2,6 +2,8 @@
 #define FUNCIONARIO_H
 
 #include <iostream>
+#include <string>
+#include <fstream>
 
 using namespace std;
 
@@ -11,20 +13,20 @@ class Funcionario {
 		string nome;
 		string cpf;
 		short idade;
-		short tipo_sanguineo;
+		string tipo_sanguineo;
 		char fatorRH;
 		string especialidade;
 
 	public:
 		Funcionario();
-		Funcionario(int i, string n, string c, short ida, short ts, char f, string e);
+		Funcionario(int i, string n, string c, short ida, string ts, char frh, string e);
 		~Funcionario();
 
 		int getId();
 		string getNome();
 		string getCpf();
 		short getIdade();
-		short getTipo_sanguineo();
+		string getTipo_sanguineo();
 		char getFatorRH();
 		string getEspecialidade();
 
@@ -32,18 +34,31 @@ class Funcionario {
 		void setNome(string n);
 		void setCpf(string c);
 		void setIdade(short ida);
-		void setTipo_sanguineo(short ts);
-		void setFatorRH(char f);
+		void setTipo_sanguineo(string ts);
+		void setFatorRH(char frh);
 		void setEspecialidade(string e);
 
-		friend std::ostream& operator<< (std::ostream &o, Funcionario const f);
+		friend ostream& operator<< (ostream &o, Funcionario const f);
+		friend istream& operator>>(istream &is, Funcionario &f);
 
 };
 
-ostream& operator<< (std::ostream &o, Funcionario const f);
+ostream& operator<< (ostream &o, Funcionario const f);
 
-class Veterinario : public Funcionario {};
+istream& operator>>(istream &is, Funcionario *f);
 
-class Tratador : public Funcionario {};
+class Veterinario : public Funcionario {
+	public:
+		Veterinario();
+		Veterinario(int i, string n, string c, short ida, string ts, char frh, string e);
+
+	friend ostream& operator<< (ostream &o, Funcionario f);
+	friend istream& operator>>(istream &is, Funcionario &f);
+};
+
+class Tratador : public Funcionario {
+	friend ostream& operator<< (ostream &o, Funcionario const f);
+	friend istream& operator>>(istream &is, Funcionario &f);
+};
 
 #endif

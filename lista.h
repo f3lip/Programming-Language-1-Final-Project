@@ -173,7 +173,7 @@ void Lista<T>::listarElementos() {
 	} else {
 		No<T>* p = this->inicio;
 		while (p != NULL) {
-			cout << p->getDado() << " -> ";
+			cout << *(p->getDado()) << " -> ";
 			p = p->getProximo();	
 		}
 		cout << "NULL" << endl;

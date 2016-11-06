@@ -39,7 +39,7 @@ class Funcionario {
 		void setFatorRH(char frh);
 		virtual void setEspecialidade(string e) = 0;
 
-		friend ostream& operator<< (ostream &o, Funcionario &f);
+		friend ostream& operator<<(ostream &o, Funcionario &f);
 		friend istream& operator>>(istream &is, Funcionario &f);
 
 };
@@ -53,9 +53,6 @@ class Veterinario : public Funcionario {
 		void setEspecialidade(string e){
 			especialidade = e;
 		}
-
-	friend ostream& operator<< (ostream &o, Funcionario &f);
-	friend istream& operator>>(istream &is, Funcionario &f);
 };
 
 class Tratador : public Funcionario {
@@ -67,12 +64,9 @@ class Tratador : public Funcionario {
 		void setEspecialidade(string e){
 			especialidade = e;
 		}
-
-	friend ostream& operator<< (ostream &o, Funcionario &f);
-	friend istream& operator>>(istream &is, Funcionario &f);
 };
 
-ostream& operator<< (ostream &o, Funcionario &f);
+ostream& operator<<(ostream &o, Funcionario &f);
 
 istream& operator>>(istream &is, Funcionario &f);
 

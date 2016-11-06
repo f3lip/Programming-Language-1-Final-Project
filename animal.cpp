@@ -58,10 +58,6 @@ void Animal::setCientifico(string cien){
 	cientifico = cien;
 }
 
-void Animal::setSexo(char s){
-	sexo = s;
-}
-
 void Animal::setTamanho(float t){
 	tamanho = t;
 }
@@ -98,6 +94,12 @@ void Anfibio::setUltimo_muda(string u){
 	ultimo_muda = u;
 }
 
+Sapo::Sapo() : Anfibio() {}
+
+void Sapo::setSexo(char s){
+	sexo = s;
+}
+
 Mamifero::Mamifero(){
 	cor_pelo = "";
 }
@@ -111,6 +113,12 @@ string Mamifero::getCor_pelo(){
 
 void Mamifero::setCor_pelo(string cor){
 	cor_pelo = cor;
+}
+
+Leao::Leao() : Mamifero() {}
+
+void Leao::setSexo(char s){
+	sexo = s;
 }
 
 Reptil::Reptil(){
@@ -134,6 +142,12 @@ void Reptil::setVenenoso(bool v){
 
 void Reptil::setTipo_veneno(string tipo){
 	tipo_veneno = tipo;
+}
+
+Tartaruga::Tartaruga() : Reptil() {}
+
+void Tartaruga::setSexo(char s){
+	sexo = s;
 }
 
 Ave::Ave(){
@@ -212,4 +226,72 @@ string Exotico::getPais_origem(){
 
 void Exotico::setPais_origem(string pais){
 	pais_origem = pais;
+}
+
+AveNativa::AveNativa() : Ave(), Nativo() {}
+
+AraraAzul::AraraAzul() : AveNativa() {}
+
+void AraraAzul::setSexo(char s){
+	sexo = s;
+}
+
+AveExotica::AveExotica() : Ave(), Exotico() {}
+
+Pavao::Pavao() : AveExotica () {}
+
+void Pavao::setSexo(char s){
+	sexo = s;
+}
+
+ostream& operator<< (ostream &o, Animal &a) {
+	o << "ID do funcionario: " << f.id << endl;
+	o << "Nome do funcionario: " << f.nome << endl;
+	o << "CPF do funcionario: " << f.cpf << endl; 
+	o << "Idade do funcionario: " << f.idade << endl;
+	o << "Tipo sanguineo do funcionario: " << f.tipo_sanguineo << endl;
+	o << "Fator RH do funcionario: " << f.fatorRH << endl;
+	o << "Especialidade do funcionario: " << f.especialidade << endl;
+	return o;
+}
+
+istream& operator>>(istream &is, Animal &a) {
+	string linha;
+
+	getline(is, linha);
+	istringstream iss(linha);
+
+	iss>> a.id;
+	iss.ignore();
+	getline(iss, a.classe, ';');
+	getline(iss, a.nome, ';');
+	getline(iss, a.cientifico, ';');
+	iss>> a.sexo;
+	iss.ignore();
+	getline(iss, a.tamanho, ';');
+	getline(iss, a.dieta, ';');
+	getline(iss, a.batismo, ';');
+	
+	if(classe == "Amphibia"){
+		iss>> a.total_mudas;
+		iss.ignore();
+		getline(iss, a.ultima_muda);
+	}
+	else if(classe == "Reptilia"){
+		iss>> a.venenoso;
+		iss.ignore();
+		getline(iss, a.tipo_veneno);
+	}
+	else if(classe == "Aves"){
+		iss>> a.tamanho_bico;
+		iss.ignore();
+		iss>> a.envergadura;
+		iss.ignore();
+		//falta adicionar if e else para dados de AveNativa e AveExotica
+	}
+	else if(classe == "Mammalia"){
+		getline(iss, a.cor_pelo);
+	}
+	
+	return is;
 }

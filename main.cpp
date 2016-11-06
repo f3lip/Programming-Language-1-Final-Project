@@ -8,8 +8,9 @@ int main (int argc, const char * argv[]){
 
 	string a1 = argv[1];
 
-	ifstream file;
+	ifstream file, file2;
 	file.open(a1);
+	file2.open(a1);
 
 	if (!file) {
 		cerr << "Nao foi possivel abrir o arquivo de entrada" << endl;
@@ -27,16 +28,17 @@ int main (int argc, const char * argv[]){
 		getline(iss, tipo_f, ';');
 
 		if(tipo_f == "Veterinario"){
-			v = new Veterinario;
-			file>>*v;
+			v = new Veterinario();
+			file2>>*v;
 		}
 		else{
 			t = new Tratador;
-			file>>(*t);
+			file2>>(*t);
 		}
 	}
 	
 	file.close();
+	file2.close();
 
 	Lista<Funcionario*> func;
 

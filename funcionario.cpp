@@ -85,46 +85,22 @@ ostream& operator<< (ostream &o, Funcionario &f) {
 }
 
 istream& operator>>(istream &is, Funcionario &f) {
-	string linha, tipo_f, n, c, ts, e;
-	int i = 0;
-	short ida;
-	char frh;
+	string linha, tipo_f;
 
 	getline(is, linha);
-	cout << linha;
 	istringstream iss(linha);
 
-	iss>> i;
+	iss>> f.id;
 	iss.ignore();
 	getline(iss, tipo_f, ';');
-	
-	Funcionario *t;
-	
-	if(tipo_f == "Veterinario"){
-		/*fun = new Veterinario;
-		fun->id = i;
-		getline(iss, fun->nome, ';');
-		getline(iss, fun->cpf, ';');
-		iss >> fun->idade;
-		iss.ignore();
-		getline(iss, fun->tipo_sanguineo, ';');
-		iss >> fun->fatorRH;
-		iss.ignore();
-		getline(iss, fun->especialidade, ';');*/
-	}
-
-	else{
-		t = new Tratador();
-		t->id = i;
-		getline(iss, t->nome, ';');
-		getline(iss, t->cpf, ';');
-		iss>> t->idade;
-		iss.ignore();
-		getline(iss, t->tipo_sanguineo, ';');
-		iss>> t->fatorRH;
-		iss.ignore();
-		getline(iss, t->especialidade, ';');
-	}
+	getline(iss, f.nome, ';');
+	getline(iss, f.cpf, ';');
+	iss>> f.idade;
+	iss.ignore();
+	getline(iss, f.tipo_sanguineo, ';');
+	iss>> f.fatorRH;
+	iss.ignore();
+	getline(iss, f.especialidade, ';');
 	
 	return is;
 }

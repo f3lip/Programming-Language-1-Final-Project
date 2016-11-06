@@ -43,10 +43,13 @@ class Animal {
 		void setId(int i);
 		void setNome(string n);
 		void setCientifico(string cien);
-		static void setSexo(char s) = 0;
+		virtual void setSexo(char s) = 0;
 		void setTamanho(float t);
 		void setDieta(string d);
 		void setBatismo(string b);
+
+		friend ostream& operator<<(ostream &o, Animal &a);
+		friend istream& operator>>(istream &is, Animal &a);
 };
 
 class Anfibio : public Animal {
@@ -66,7 +69,13 @@ class Anfibio : public Animal {
 		void setUltimo_muda(string u);
 };
 
-class Sapo : public Anfibio {};
+class Sapo : public Anfibio {
+	public:
+		Sapo();
+		~Sapo();
+
+		void setSexo(char s);
+};
 
 class Mamifero : public Animal {
 	protected:
@@ -82,7 +91,13 @@ class Mamifero : public Animal {
 		void setCor_pelo(string cor);
 };
 
-class Leao : public Mamifero {};
+class Leao : public Mamifero {
+	public:
+		Leao();
+		~Leao();
+
+		void setSexo(char s);
+};
 
 class Reptil : public Animal {
 	protected:
@@ -101,7 +116,13 @@ class Reptil : public Animal {
 		void setTipo_veneno(string tipo);
 };
 
-class Tartaruga : public Reptil {};
+class Tartaruga : public Reptil {
+	public:
+		Tartaruga();
+		~Tartaruga();
+
+		void setSexo(char s);
+};
 
 class Ave : public Animal {
 	protected:
@@ -165,12 +186,35 @@ class Exotico : public AnimalSilvestre {
 		void setPais_origem(string pais);
 };
 
-class AveNativa : public Ave, Nativo {};
+class AveNativa : public Ave, Nativo {
+	public:
+		AveNativa();
+		~AveNativa();
+};
 
-class AraraAzul : public AveNativa {};
+class AraraAzul : public AveNativa {
+	public:
+		AraraAzul();
+		~AraraAzul();
 
-class AveExotica : public Ave, Exotico {};
+		void setSexo(char s);
+};
 
-class Pavao : public AveExotica {};
+class AveExotica : public Ave, Exotico {
+	public:
+		AveExotica();
+		~AveExotica();
+};
+
+class Pavao : public AveExotica {
+	public:
+		Pavao();
+		~Pavao();
+
+		void setSexo(char s);
+};
+
+ostream& operator<<(ostream &o, Animal &a);
+istream& operator>>(istream &is, Animal &a);
 
 #endif

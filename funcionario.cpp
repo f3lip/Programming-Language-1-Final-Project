@@ -65,17 +65,13 @@ void Funcionario::setFatorRH(char frh){
 	fatorRH = frh;
 }
 
-void Funcionario::setEspecialidade(string e){
-	especialidade = e;
-}
-
 Veterinario::Veterinario() : Funcionario () {}
 
-Veterinario::Veterinario(int i, string n, string c, short ida, string ts, char frh, string e) : Funcionario (i, n, c, ida, ts, frh, e) {}
+//Veterinario::Veterinario(int i, string n, string c, short ida, string ts, char frh, string e) : Funcionario (i, n, c, ida, ts, frh, e) {}
 
 Tratador::Tratador() : Funcionario () {}
 
-Tratador::Tratador(int i, string n, string c, short ida, string ts, char frh, string e) : Funcionario (i, n, c, ida, ts, frh, e) {}
+//Tratador::Tratador(int i, string n, string c, short ida, string ts, char frh, string e) : Funcionario (i, n, c, ida, ts, frh, e) {}
 
 ostream& operator<< (ostream &o, Funcionario &f) {
 	o << "ID do funcionario: " << f.id << endl;
@@ -89,20 +85,23 @@ ostream& operator<< (ostream &o, Funcionario &f) {
 }
 
 istream& operator>>(istream &is, Funcionario &f) {
-	string linha, tipo_f;
-	int i;
-
-	Funcionario *fun;
+	string linha, tipo_f, n, c, ts, e;
+	int i = 0;
+	short ida;
+	char frh;
 
 	getline(is, linha);
+	cout << linha;
 	istringstream iss(linha);
 
-	iss >> i;
+	iss>> i;
 	iss.ignore();
 	getline(iss, tipo_f, ';');
 	
+	Funcionario *t;
+	
 	if(tipo_f == "Veterinario"){
-		fun = new Veterinario;
+		/*fun = new Veterinario;
 		fun->id = i;
 		getline(iss, fun->nome, ';');
 		getline(iss, fun->cpf, ';');
@@ -111,20 +110,20 @@ istream& operator>>(istream &is, Funcionario &f) {
 		getline(iss, fun->tipo_sanguineo, ';');
 		iss >> fun->fatorRH;
 		iss.ignore();
-		getline(iss, fun->especialidade, ';');
+		getline(iss, fun->especialidade, ';');*/
 	}
 
-	else if(tipo_f == "Tratador"){
-		fun = new Tratador;
-		fun->id = i;
-		getline(iss, fun->nome, ';');
-		getline(iss, fun->cpf, ';');
-		iss >> fun->idade;
+	else{
+		t = new Tratador();
+		t->id = i;
+		getline(iss, t->nome, ';');
+		getline(iss, t->cpf, ';');
+		iss>> t->idade;
 		iss.ignore();
-		getline(iss, fun->tipo_sanguineo, ';');
-		iss >> fun->fatorRH;
+		getline(iss, t->tipo_sanguineo, ';');
+		iss>> t->fatorRH;
 		iss.ignore();
-		getline(iss, fun->especialidade, ';');
+		getline(iss, t->especialidade, ';');
 	}
 	
 	return is;

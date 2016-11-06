@@ -2,8 +2,9 @@
 #include "lista.h"
 
 int main (int argc, const char * argv[]){
-	
-	Funcionario* f = new Funcionario;
+
+	Funcionario* v;
+	Funcionario* t;
 
 	string a1 = argv[1];
 
@@ -16,14 +17,30 @@ int main (int argc, const char * argv[]){
 		return 1;
 	} 
 	else {
-		file >> *f;
+		string linha, tipo_f;
+
+		getline(file, linha);
+		istringstream iss(linha);
+
+		iss.ignore();
+		iss.ignore();
+		getline(iss, tipo_f, ';');
+
+		if(tipo_f == "Veterinario"){
+			v = new Veterinario;
+			file>>*v;
+		}
+		else{
+			t = new Tratador;
+			file>>(*t);
+		}
 	}
 	
 	file.close();
 
 	Lista<Funcionario*> func;
 
-	func.inserirInicio(f);
+	func.inserirInicio(t);
 
 	func.listarElementos();
 

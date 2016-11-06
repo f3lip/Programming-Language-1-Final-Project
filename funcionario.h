@@ -37,22 +37,22 @@ class Funcionario {
 		void setIdade(short ida);
 		void setTipo_sanguineo(string ts);
 		void setFatorRH(char frh);
-		void setEspecialidade(string e);
+		virtual void setEspecialidade(string e) = 0;
 
 		friend ostream& operator<< (ostream &o, Funcionario &f);
 		friend istream& operator>>(istream &is, Funcionario &f);
 
 };
 
-ostream& operator<< (ostream &o, Funcionario &f);
-
-istream& operator>>(istream &is, Funcionario &f);
-
 class Veterinario : public Funcionario {
 	public:
 		Veterinario();
-		Veterinario(int i, string n, string c, short ida, string ts, char frh, string e);
+		Veterinario(int i, string n, string c, short ida, string ts, char frh, string e) : Funcionario (i, n, c, ida, ts, frh, e) {}
 		~Veterinario();
+
+		void setEspecialidade(string e){
+			especialidade = e;
+		}
 
 	friend ostream& operator<< (ostream &o, Funcionario &f);
 	friend istream& operator>>(istream &is, Funcionario &f);
@@ -61,11 +61,19 @@ class Veterinario : public Funcionario {
 class Tratador : public Funcionario {
 	public:
 		Tratador();
-		Tratador(int i, string n, string c, short ida, string ts, char frh, string e);
+		Tratador(int i, string n, string c, short ida, string ts, char frh, string e) : Funcionario (i, n, c, ida, ts, frh, e){}
 		~Tratador();
+
+		void setEspecialidade(string e){
+			especialidade = e;
+		}
 
 	friend ostream& operator<< (ostream &o, Funcionario &f);
 	friend istream& operator>>(istream &is, Funcionario &f);
 };
+
+ostream& operator<< (ostream &o, Funcionario &f);
+
+istream& operator>>(istream &is, Funcionario &f);
 
 #endif

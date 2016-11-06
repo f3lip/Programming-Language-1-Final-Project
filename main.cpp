@@ -3,7 +3,7 @@
 
 int main (int argc, const char * argv[]){
 	
-	Veterinario* v = new Veterinario;
+	Funcionario* f = new Funcionario;
 
 	string a1 = argv[1];
 
@@ -16,14 +16,14 @@ int main (int argc, const char * argv[]){
 		return 1;
 	} 
 	else {
-		file >> (*v);
+		file >> *f;
 	}
 	
 	file.close();
 
-	Lista<Veterinario*> func;
+	Lista<Funcionario*> func;
 
-	func.inserirInicio(v);
+	func.inserirInicio(f);
 
 	func.listarElementos();
 

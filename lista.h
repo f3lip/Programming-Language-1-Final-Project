@@ -2,6 +2,8 @@
 #define LISTA_H
 
 #include "no.h"
+#include "animal.h"
+#include "funcionario.h"
 
 template<class T>
 class Lista{
@@ -22,14 +24,16 @@ class Lista{
 		void setFim(No<T>* f);
 
 		void inserirInicio(T d);
-		void inserirPosicao(T d, int pos);
+		void inserirId(T d, int id);
 		void inserirFim(T d);
 		void removerInicio();
-		void removerPosicao(int pos);
+		void removerId(int id);
 		void removerFim();
 		bool listaVazia();
 		void listarElementos();
 		int buscar(T d);
+		void buscarObj(int id);
+		T buscarObj1(int id);
 };
 
 template<class T>
@@ -78,21 +82,21 @@ void Lista<T>::inserirInicio(T d) {
 }
 
 template<class T>
-void Lista<T>::inserirPosicao(T d, int pos) {
-	if (pos > tamanho) {
-		cerr << "Nao e possivel inserir: posicao invalida" << endl;
+void Lista<T>::inserirId(T d, int id) {
+	if (listaVazia()) {
+		inserirInicio(d);
 	} else {
-		if (listaVazia()) {
-			inserirInicio(d);
-		} else {
-			No<T>* novo = new No<T>(d);
-			No<T>* p = this->inicio;
-			for (int i = 0; i < pos-1; i++) {
+		int posicao = -1, tamanho;
+		No<T>* p = this->inicio;
+		T c = p->getDado();
+		tamanho = c->getTamanho();
+		while (posicao < (tamanho - 1) ) {
+			posicao++;
+			if (c->getId() == id) {
+				p->setDado(d);
+			} else {
 				p = p->getProximo();
 			}
-			novo->setProximo(p->getProximo());
-			p->setProximo(novo);
-			tamanho++;
 		}
 	}
 }
@@ -125,22 +129,21 @@ void Lista<T>::removerInicio() {
 }
 
 template<class T>
-void Lista<T>::removerPosicao(int pos) {
+void Lista<T>::removerId(int id) {
 	if (listaVazia()) {
 		cerr << "Nao e possivel remover: lista vazia" << endl;
-	} else if (pos > tamanho-1) {
-		cerr << "Nao e possivel remover: posicao invalida" << endl;
 	} else {
+		int posicao = -1;
 		No<T>* p = this->inicio;
-		No<T>* anterior;
-		for (int i = 0; i < pos; i++) {
-			anterior = p;
-			p = p->getProximo();
+		T d = p->getDado();
+		while (id != d->getId() ) {
+			posicao++;
+			if (d->getId() == id) {
+				delete p;
+			} else {
+				p = p->getProximo();
+			}
 		}
-
-		anterior->setProximo(p->getProximo());
-		delete p;
-		tamanho--;
 	}
 }
 
@@ -193,6 +196,38 @@ int Lista<T>::buscar(T d) {
 		}
 	}
 	return posicao;
+}
+
+template<class T>
+void Lista<T>::buscarObj(int id) {
+	int posicao = -1;
+	int tamanho = getTamanho();
+	No<T>* p = this->inicio;
+	T d = p->getDado();
+	while (posicao < (tamanho-1)) {
+		posicao++;
+		if (d->getId() == id) {
+			cout << (*d);
+		} else {
+			p = p->getProximo();
+		}
+	}
+}
+
+template<class T>
+T Lista<T>::buscarObj1(int id) {
+	int posicao = -1;
+	No<T>* p = this->inicio;
+	T d = p->getDado();
+	while (id != d->getId() ) {
+		posicao++;
+		if (d->getId() == id) {
+			return d;
+		} else {
+			p = p->getProximo();
+		}
+	}
+
 }
 
 #endif
